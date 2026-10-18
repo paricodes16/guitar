@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A minor scale on guitar</title>
+  <meta name="description" content="Learn the A minor scale on guitar from the 5th fret. Tap the notes to hear them.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>">
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="head">
+      <a class="back" href="../">&larr; All scales</a>
+      <h1>A minor scale on guitar</h1>
+      <p class="lede">
+        Position 1 starts on the 5th fret and runs to the 9th. Tap any dot to hear it.
+        White dots are notes of the scale and the gold dot is the root, A.
+        Strings are drawn the way you see them when playing: 6th string (low E) on top, 1st string (high E) at the bottom.
+      </p>
+    </header>
+
+    <section class="card" aria-label="Guitar fretboard">
+      <div class="neck-scroll">
+        <div class="neck only-scale" id="neck"></div>
+      </div>
+      <p class="swipe">Swipe sideways to see all frets.</p>
+    </section>
+
+    <section class="card" aria-label="Scale notes">
+      <h2>The scale, note by note</h2>
+      <ol id="strip" class="strip"></ol>
+      <p id="status" class="status" aria-live="polite"></p>
+
+      <div class="actions">
+        <button type="button" id="playUp" class="btn primary">Play up</button>
+        <button type="button" id="playDown" class="btn">Play down</button>
+        <button type="button" id="practice" class="btn">Practice</button>
+        <button type="button" id="stop" class="btn">Stop</button>
+      </div>
+
+      <div class="settings">
+        <label class="speed" for="bpm">
+          Speed
+          <input type="range" id="bpm" min="40" max="200" step="5" value="100">
+          <output id="bpmOut" for="bpm">100 BPM</output>
+        </label>
+        <label class="check"><input type="checkbox" id="showOut"> Show notes outside the scale</label>
+        <label class="check"><input type="checkbox" id="showHint" checked> Show hints while practicing</label>
+      </div>
+    </section>
+  </main>
+
+  <script src="scale.js"></script>
+  <script src="../shared/engine.js"></script>
+</body>
+</html>
