@@ -1,0 +1,104 @@
+/* Page-specific styles for the triads lesson. Shared styles come from ../shared/style.css */
+:root {
+  --c0: #46d3c4; /* root position  */
+  --c1: #b79bff; /* 1st inversion  */
+  --c2: #ff8f66; /* 2nd inversion  */
+}
+
+h3 { margin: 22px 0 8px; font-size: 1.1rem; }
+.sub { margin: 20px 0 10px; font-size: 1.05rem; }
+
+/* ---------- Pickers ---------- */
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg-btn {
+  display: grid;
+  gap: 1px;
+  min-width: 74px;
+  padding: 8px 14px;
+  border: 1px solid #34414b;
+  border-radius: 10px;
+  background: #1f272e;
+  color: var(--text);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.seg-btn b { font-size: 1.05rem; }
+.seg-btn small { color: var(--muted); font-size: 0.78rem; }
+.seg-btn:hover { border-color: var(--teal); }
+.seg-btn[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #06201d; }
+.seg-btn[aria-pressed="true"] small { color: #0c3a35; }
+
+/* ---------- Fretboard ---------- */
+.neck { min-width: 980px; }
+.cell.open { border-left: 0; }
+.cell.after-nut { border-left: 7px solid #e6dfcf; }
+
+.note.inv0, .note.inv1, .note.inv2 {
+  color: #10151a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.55);
+}
+.note.inv0 { background: var(--c0); }
+.note.inv1 { background: var(--c1); }
+.note.inv2 { background: var(--c2); }
+.note.rt { box-shadow: 0 0 0 3px #24150e, 0 0 0 5px #fff, 0 2px 6px rgba(0, 0, 0, 0.55); }
+.neck.focusing .note.dim { opacity: 0.18; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 14px; color: var(--muted); font-size: 0.92rem; }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 16px; height: 16px; border-radius: 50%; }
+.dot.d0 { background: var(--c0); }
+.dot.d1 { background: var(--c1); }
+.dot.d2 { background: var(--c2); }
+.dot.ring { background: #24150e; box-shadow: 0 0 0 2px #24150e, 0 0 0 4px #fff; }
+
+.options { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 14px; color: var(--muted); }
+
+/* ---------- Inversion cards ---------- */
+.inv-cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.inv-card {
+  padding: 14px 16px 16px;
+  border: 1px solid #2f3a43;
+  border-top: 5px solid var(--c);
+  border-radius: 12px;
+  background: #1f272e;
+}
+.inv-card h3 { margin: 0 0 6px; }
+.notes-line { margin: 0; font-size: 1.7rem; font-weight: 800; letter-spacing: 0.08em; color: var(--c); white-space: pre; }
+.inv-card .meta, .inv-card .frets { margin: 8px 0 0; color: var(--muted); font-size: 0.92rem; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.card-actions .btn { padding: 8px 12px; font-size: 0.9rem; }
+.row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+/* ---------- Theory ---------- */
+.theory p, .theory li { max-width: 70ch; }
+.theory p { margin: 8px 0; }
+.theory ol { margin: 8px 0; padding-left: 22px; }
+.theory li { margin: 6px 0; }
+.theory .rule {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-left: 4px solid var(--teal);
+  background: #1b2329;
+  border-radius: 0 8px 8px 0;
+}
+
+.table-wrap { overflow-x: auto; margin: 10px 0; }
+.table { width: 100%; border-collapse: collapse; min-width: 480px; font-size: 0.95rem; }
+.table th, .table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #2a343c; }
+.table th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+.table tr.sel td { background: rgba(70, 211, 196, 0.12); }
+.table td.swatch { border-left: 5px solid var(--c0); font-weight: 600; }
+.table td.swatch.inv1 { border-left-color: var(--c1); }
+.table td.swatch.inv2 { border-left-color: var(--c2); }
+
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--teal);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
