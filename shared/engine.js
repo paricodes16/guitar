@@ -68,6 +68,10 @@ if (typeof document !== 'undefined') {
 
   function ensureAudio() {
     if (!ctx) {
+      // iOS 17+: treat this page as media playback so the silent switch doesn't mute it.
+      if (navigator.audioSession) {
+        try { navigator.audioSession.type = 'playback'; } catch (e) { /* not supported */ }
+      }
       const AC = window.AudioContext || window.webkitAudioContext;
       ctx = new AC();
       const tone = ctx.createBiquadFilter();
@@ -82,6 +86,26 @@ if (typeof document !== 'undefined') {
     }
     if (ctx.state === 'suspended') ctx.resume();
   }
+
+  // Mobile browsers only let audio start from certain gestures (iOS Safari
+  // ignores pointerdown), so unlock on the events they do accept.
+  let unlocked = false;
+  function unlockAudio() {
+    if (unlocked) return;
+    ensureAudio();
+    const silent = ctx.createBufferSource();
+    silent.buffer = ctx.createBuffer(1, 1, 22050);
+    silent.connect(ctx.destination);
+    silent.start(0);
+    const p = ctx.resume();
+    if (p && p.then) {
+      p.then(() => { if (ctx.state === 'running') unlocked = true; }).catch(() => {});
+    } else if (ctx.state === 'running') {
+      unlocked = true;
+    }
+  }
+  ['touchend', 'pointerup', 'click', 'keydown'].forEach(ev =>
+    document.addEventListener(ev, unlockAudio, { passive: true }));
 
   function getBuffer(midi) {
     let entry = buffers.get(midi);
@@ -235,7 +259,10 @@ if (typeof document !== 'undefined') {
   let timers = [];
   let practice = null; // { i }
 
-  const idleText = 'Listen with Play up, then press Practice and find each note yourself.';
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const idleText = 'Listen with Play up, then press Practice and find each note yourself.' +
+    (isIOS ? ' No sound? Turn off silent mode (the switch on the side of your phone).' : '');
 
   function stopAll() {
     timers.forEach(clearTimeout);
