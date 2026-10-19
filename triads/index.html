@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Triads on guitar</title>
+  <meta name="description" content="Learn triads and their inversions on guitar, starting from the C major scale. Colour-coded shapes, sound and theory.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>">
+  <link rel="stylesheet" href="../shared/style.css">
+  <link rel="stylesheet" href="triads.css">
+</head>
+<body>
+  <main class="page">
+    <header class="head">
+      <a class="back" href="../">&larr; All lessons</a>
+      <h1>Triads on guitar</h1>
+      <p class="lede">
+        A triad is a three-note chord, and it can be played three ways: root position, 1st inversion and 2nd inversion.
+        Start with C major, then try the other chords built from the C major scale.
+        Tap any dot to hear it. Each inversion has its own colour on the fretboard.
+      </p>
+    </header>
+
+    <section class="card" aria-label="Choose chord and strings">
+      <h2>Choose a chord</h2>
+      <div id="chordSeg" class="seg" role="group" aria-label="Chord"></div>
+      <h2 class="sub">Choose three strings</h2>
+      <div id="setSeg" class="seg" role="group" aria-label="String set"></div>
+    </section>
+
+    <section class="card" aria-label="Guitar fretboard">
+      <div class="legend">
+        <span><i class="dot d0"></i> Root position</span>
+        <span><i class="dot d1"></i> 1st inversion</span>
+        <span><i class="dot d2"></i> 2nd inversion</span>
+        <span><i class="dot ring"></i> White ring: the root note</span>
+      </div>
+      <div class="neck-scroll">
+        <div class="neck only-scale" id="neck"></div>
+      </div>
+      <p class="swipe">Swipe sideways to see all frets.</p>
+      <div class="options">
+        <label class="check"><input type="checkbox" id="showTones"> Show chord tones (R, 3, 5) instead of note names</label>
+        <label class="check"><input type="checkbox" id="showAll"> Show all other notes</label>
+      </div>
+    </section>
+
+    <section class="card" aria-label="The three inversions">
+      <h2>Three ways to play <span class="chord-name">C</span></h2>
+      <div id="cards" class="inv-cards"></div>
+      <div class="row-actions">
+        <button type="button" id="playAll" class="btn primary">Hear all three in a row</button>
+        <button type="button" id="stop" class="btn">Stop</button>
+      </div>
+    </section>
+
+    <section class="card theory" aria-label="Theory">
+      <h2>Theory</h2>
+
+      <h3>What is a triad?</h3>
+      <p>
+        A triad is a chord of three notes. You build one by choosing a note, called the root, and stacking two thirds on top of it.
+        That gives three chord tones: the root (R), the third (3) and the fifth (5).
+        Triads are the foundation of harmony, and most chords you know are triads with extra notes added.
+      </p>
+
+      <h3>Triads in the C major scale</h3>
+      <p>
+        The C major scale is C D E F G A B. To build a triad, start on a note, skip one, take the next, skip one, and take the next.
+        Starting on C gives C, E, G. C to E is a major third (4 semitones) and E to G is a minor third (3 semitones), and that combination makes a major triad.
+        Doing the same on every note of the scale gives seven triads.
+      </p>
+      <div class="table-wrap">
+        <table class="table" id="diatonic">
+          <thead><tr><th>Numeral</th><th>Chord</th><th>Notes</th><th>Type</th><th>Function</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="rule">
+        <strong>Three types of triad.</strong>
+        Major: major third then minor third (1 – 3 – 5).
+        Minor: minor third then major third (1 – ♭3 – 5).
+        Diminished: two minor thirds (1 – ♭3 – ♭5).
+        In the numerals, capitals are major, lowercase are minor, and the small circle means diminished.
+      </p>
+      <p>Select a chord in the table, or use the buttons at the top, and the whole page updates.</p>
+
+      <h3>Inversions</h3>
+      <p id="chordFacts"></p>
+      <p>
+        Inverting a triad means changing which chord tone is the lowest note. The three notes stay the same, only their order changes.
+        The chord keeps its name, and we add the bass note after a slash: <span class="chord-name">C</span> with E in the bass is written C/E for a C major chord.
+      </p>
+      <div class="table-wrap">
+        <table class="table" id="invTable">
+          <thead><tr><th>Position</th><th>Bass note</th><th>Notes, low to high</th><th>Chord symbol</th><th>Intervals above the bass</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Why learn inversions?</strong>
+        They let you play the same chord in different places on the neck, and they let chords connect smoothly.
+        For example, going from C major in root position (C E G) to F major in 2nd inversion (C F A), the C stays where it is, E steps up to F, and G steps up to A.
+        Only two notes move, and each by one step.
+      </p>
+
+      <h3>Reading the fretboard</h3>
+      <p>
+        Each triad here sits on three neighbouring strings, called a string set. The bass note is on the lowest string of the set and the highest note is on the top string.
+        The strings are drawn like tab, with the 6th string (low E) on top.
+      </p>
+      <p>
+        The colours show the inversions, and the white ring marks the root note of the chord wherever it appears.
+        A shape repeats 12 frets higher, so you may see the same colour twice.
+      </p>
+      <p>
+        Shapes are movable. Slide a shape up or down by the same number of frets and you get a triad of the same type and inversion on a different root, as long as the shape has no open strings.
+        Each string set has its own shapes, because the strings are tuned a fourth apart except for G to B, which is a major third.
+      </p>
+
+      <h3>How to practise</h3>
+      <ol>
+        <li>Pick one string set and play the three inversions of C major one after another, saying each note name as you play it.</li>
+        <li>Listen to the sound of each type. Major triads sound bright, minor triads sound darker, and the diminished triad sounds tense and unfinished.</li>
+        <li>Keep the same string set and the same inversion, and move through the seven chords. Notice how the shape changes between major, minor and diminished.</li>
+        <li>Repeat everything on a different string set.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="../shared/audio.js"></script>
+  <script src="triads.js"></script>
+</body>
+</html>
